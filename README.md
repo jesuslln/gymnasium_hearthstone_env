@@ -3,7 +3,11 @@ simulating an environment in which Hearthstone is played.
 
 ## Installation
 
-Install the [OpenAI gym](https://gym.openai.com/docs/).
+Follow the Instalation steps
+
+Create a venv using python 3.9
+
+Install the [OpenAI gymnasium](https://github.com/Farama-Foundation/Gymnasium).
 
 Install Fireplace Hearthstone Simulator
 
@@ -12,6 +16,8 @@ git clone https://github.com/jleclanche/fireplace
 cd fireplace
 pip install .
 ```
+
+Install stable-baselines extra
 
 To install stable baselines check the wiki.
 

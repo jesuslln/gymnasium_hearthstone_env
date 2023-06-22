@@ -1,0 +1,7 @@
+1. Create a Conda env with python 3.9
+2. Install requirements
+
+3. !pip install gymnasium
+4. !pip install stable-baselines3[extra]
+5.  pip install git+https://github.com/jleclanche/fireplace.git
+6. Make the changes in the stable-baselines library as discribe in the wiki
