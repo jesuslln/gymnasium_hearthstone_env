@@ -3,6 +3,7 @@ from fireplace.player import Player
 from fireplace.game import Game
 from fireplace.deck import Deck
 from fireplace.utils import random_draft
+from fireplace import exceptions
 from hearthstone.enums import PlayState, Step, Mulligan, CardClass, Zone
 from gymnasium import spaces
 import gymnasium as gym
@@ -84,6 +85,8 @@ class HearthstoneEnv(gym.Env):
                 self.opponent = "model"
             except FileNotFoundError:
                 self.opponent = "random"
+        else:
+            self.opponent = "random"
         
         # store training data
         self.reward_dict = {}
@@ -106,7 +109,7 @@ class HearthstoneEnv(gym.Env):
         self.attribute_error = False
         self.setup_game()
 
-    def reset(self):
+    def reset(self, seed=None):
         print("------------------------")
         print(">>> Episode {}".format(self.curr_episode))
         print("------------------------")
@@ -114,7 +117,7 @@ class HearthstoneEnv(gym.Env):
         # We will have to reset hand, field, secrets for both players
 
         self.setup_game()
-        return self._get_obs()
+        return self._get_obs(), {}
 
     def reset_stats(self):
         self.tot_step = 0
@@ -348,7 +351,7 @@ class HearthstoneEnv(gym.Env):
             terminated = True
 
 
-        return ob, reward, terminated, {}
+        return ob, reward, terminated, False, {}
 
 
     def _take_action(self, action):
